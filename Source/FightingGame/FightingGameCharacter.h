@@ -38,6 +38,12 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent *InputComponent) override;
 	// End of APawn interface
 
+	// TakeDamage causes an error because some class already has declared it
+	void PlayerTakeDamage(float _damageAmount);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	float playerHealth;
+
 public:
 	AFightingGameCharacter();
 

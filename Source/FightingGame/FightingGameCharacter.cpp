@@ -41,6 +41,8 @@ AFightingGameCharacter::AFightingGameCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
 
+	playerHealth = 1.00f;
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character)
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -99,4 +101,14 @@ void AFightingGameCharacter::StartAttack3()
 void AFightingGameCharacter::StartAttack4()
 {
 	UE_LOG(LogTemp, Warning, TEXT("We are using our fourth attack!"));
+	PlayerTakeDamage(0.05f);
+}
+
+void AFightingGameCharacter::PlayerTakeDamage(float _damageAmount)
+{
+	UE_LOG(LogTemp, Warning, TEXT("We are taking damage for %f points"), _damageAmount);
+
+	playerHealth -= _damageAmount;
+	if (playerHealth < 0.00f)
+		playerHealth = 0.00f;
 }
